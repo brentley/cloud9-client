@@ -1,0 +1,46 @@
+{
+  "name": "cloud9-client",
+  "productName": "Cloud9Client",
+  "version": "0.0.0",
+  "description": "Client for cloud9",
+  "license": "MIT",
+  "repository": "ichiwa/cloud9-client",
+  "author": {
+    "name": "Ichiwa",
+    "email": "shimokawa@devalon.biz",
+    "url": "github.com/ichiwa"
+  },
+  "scripts": {
+    "test": "xo",
+    "start": "electron .",
+    "build": "rm -r ./dist && electron-packager . --platform=darwin --out=dist --asar --overwrite"
+  },
+  "files": [
+    "index.js",
+    "index.html",
+    "index.css"
+  ],
+  "keywords": [
+    "electron-app",
+    "electron"
+  ],
+  "dependencies": {
+    "electron-config": "^0.2.1",
+    "electron-debug": "^1.0.0",
+    "electron-json-storage": "^2.0.0",
+    "portscanner": "^1.0.0"
+  },
+  "devDependencies": {
+    "devtron": "^1.1.0",
+    "electron-packager": "^8.0.0",
+    "electron": "^1.3.3",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "node",
+      "browser"
+    ]
+  }
+}

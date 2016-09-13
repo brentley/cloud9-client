@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Cloud9-Client</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="css/index.css">
+		<style>
+			body {
+				background-color:#000;
+				color: #FFF;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Cloud9-Client</h1>
+			<section id="zero" style="height:50px"></section>
+			<section id="first"></section>
+			<section id="second"></section>
+			<section id="third"></section>
+			<section id="fourth"></section>
+		</div>
+		<script>
+		window.jQuery = window.$ = require('./js/jquery.min');
+		</script>
+		<!--<script src="js/jquery.min.js"></script>-->
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/typed.min.js"></script>
+		<script type="text/javascript">
+			const ipc = require('electron').ipcRenderer
+		  $(function(){
+	  		function show_typed_message($element, msgs, speed, callback) {
+	  			$($element).typed({
+	  				strings: msgs,
+	  				typeSpeed: speed,
+	  				showCursor: false,
+	  				callback: callback
+	  			});
+	  		}
+	  		ipc.send('initialize');
+	  		ipc.on('initialize-done', function(event, arg) {
+	  			show_typed_message($("#zero"), [`Your config file : ${arg.config_path} <br> available port number : ${arg.port_number}`]);
+		      show_typed_message($("#first"), [`Choose the cloud9 directory ...`], 10, 
+		      	() => { 
+		      		ipc.send('choose-cloud9-directory'); 
+		      	}
+		      );
+	  		});
+				ipc.on('choose-cloud9-directory-done', function(event, arg) {
+					show_typed_message($("#second"), [`cloud9 directory : ${arg.directory}`], 0, () => {
+						show_typed_message($("#third"), [`Choose project directory ... `], 20, () => {
+							ipc.send('choose-project-directory');
+						})
+					});
+				});
+				ipc.on('choose-project-directory-done', function(event, arg) {
+					show_typed_message($("#fourth"), [`${arg.directory} <br> ${arg.url} <br> ^1000 open now`], 0, () => {
+						ipc.send('typed-done');
+					});
+				});
+		  });
+		</script>
+	</body>
+</html>
