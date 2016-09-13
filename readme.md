@@ -1,6 +1,4 @@
 # cloud9-client
-
-## Demo
 ![demo](./demo.gif)
 
 ### Run
