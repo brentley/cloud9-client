@@ -1,5 +1,7 @@
 # cloud9-client
 
+## Demo
+![demo](./demo.gif)
 
 ## Dev
 
@@ -12,10 +14,6 @@ $ npm install
 ```
 $ npm start
 ```
-
-### Demo
-![demo](./demo.gif)
-
 
 ### Build
 
