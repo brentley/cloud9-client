@@ -9,6 +9,7 @@ const portscanner = require('portscanner');
 const Config = require('electron-config');
 const config = new Config();
 const app = electron.app;
+const Menu = require('electron').Menu;
 
 // adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
@@ -42,6 +43,26 @@ function createMainWindow(nodeIntegration) {
   });
   win.loadURL(`file://${__dirname}/index.html`);
   win.on('closed', onClosed);
+  
+  const template = [{
+      label: "Application",
+      submenu: [
+          { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
+          { type: "separator" },
+          { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
+      ]}, {
+      label: "Edit",
+      submenu: [
+          { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+          { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+          { type: "separator" },
+          { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+          { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+          { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+          { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+      ]}
+  ];
+  Menu.setApplicationMenu(Menu.buildFromTemplate(template));  
   return win;
 }
 
