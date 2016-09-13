@@ -1,5 +1,5 @@
 # cloud9-client
-![demo](./demo.gif)
+![demo](./demo_img.gif)
 
 ### Run
 
