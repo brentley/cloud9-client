@@ -18,7 +18,7 @@
 	<body>
 		<div class="container" style="height:auto; font-size:15px;">
 			<h1 class="text-primary">Cloud9-Client</h1>
-			<section id="zero"></section><br><br>
+			<section id="zero"></section>
 			<section id="first"></section>
 			<section id="second"></section>
 			<section id="third"></section>
@@ -43,7 +43,7 @@
 	  		}
 	  		ipc.send('initialize');
 	  		ipc.on('initialize-done', function(event, arg) {
-	  			show_typed_message($("#zero"), [`<strong>Your config file : ${arg.config_path} <br> available port number : ${arg.port_number}</strong>`]);
+	  			$("#zero").append(`<strong>your config file : ${arg.config_path} <br> available port number : ${arg.port_number} <br> node version : ${arg.node_version}</strong>`);
 		      show_typed_message($("#first"), [`Choose the cloud9 directory ...`], 10, 
 		      	() => { 
 		      		ipc.send('choose-cloud9-directory'); 

@@ -135,7 +135,11 @@ app.on('ready', () => {
 });
 
 ipc.on('initialize', function(event, arg) {
-  event.sender.send('initialize-done', {config_path: config.path, port_number: port_number});
+  event.sender.send('initialize-done', {
+    config_path: config.path, 
+    port_number: port_number,
+    node_version: process.version
+  });
 });
 
 ipc.on('choose-cloud9-directory', function(event, arg) {
