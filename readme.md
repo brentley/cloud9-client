@@ -14,7 +14,7 @@ $ npm start
 ```
 
 ### Demo
-
+![demo](./demo.gif)
 
 
 ### Build
