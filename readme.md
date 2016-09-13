@@ -29,3 +29,8 @@ Builds the app for macOS in `./dist` directory.
 ## License
 
 MIT © [Ichiwa](https://github.com/ichiwa)
+
+## Version
+
+node.js 6.5.0
+cloud9 3.1.3059
