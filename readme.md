@@ -1,6 +1,9 @@
 # cloud9-client
 ![demo](./demo_img.gif)
 
+### Download app file
+https://github.com/ichiwa/cloud9-client/releases
+
 ### Run
 
 ```
