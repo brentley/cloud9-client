@@ -41,7 +41,7 @@ function createMainWindow(nodeIntegration) {
       nodeIntegration: nodeIntegration
     }
   });
-  win.loadURL(`file://${__dirname}/index.html`);
+  win.loadURL(`file://${__dirname}/www/index.html`);
   win.on('closed', onClosed);
   
   const template = [{

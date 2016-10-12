@@ -12,14 +12,9 @@
   },
   "scripts": {
     "test": "xo",
-    "start": "electron .",
+    "start": "electron main.js",
     "build": "rm -r ./dist && electron-packager . --platform=darwin --out=dist --overwrite"
   },
-  "files": [
-    "index.js",
-    "index.html",
-    "index.css"
-  ],
   "keywords": [
     "electron-app",
     "electron"
