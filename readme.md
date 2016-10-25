@@ -1,10 +1,4 @@
 # cloud9-client
-![demo](./demo_img.gif)  
-This is client app for [cloud9 IDE(local stand alone)](https://github.com/c9/core)
-
-
-### Download app file
-https://github.com/ichiwa/cloud9-client/releases
 
 ### Run
 
