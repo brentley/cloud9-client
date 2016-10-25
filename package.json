@@ -13,9 +13,9 @@
   "scripts": {
     "lint": "$(npm bin)/eslint ./src",
     "test": "xo",
-    "start": "npm run build & electron main.js",
+    "start": "npm run build & electron index.js",
     "build": "$(npm bin)/webpack --colors --watch",
-    "build:package": "rm -r ./dist && electron-packager . --platform=darwin --out=dist --overwrite"
+    "build:package": "rm -r ./dist; electron-packager . --platform=darwin --out=dist --overwrite"
   },
   "keywords": [
     "electron-app",
@@ -74,7 +74,8 @@
   },
   "files": [
     "index.js",
-    "index.html"
+    "index.html",
+    "./www/*.*"
   ],
   "xo": {
     "esnext": true,

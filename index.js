@@ -134,17 +134,19 @@ ipc.on('open-project', function(event, arg) {
     return dialog.showErrorBox("Error", `Project isn't selected.`);
   }
   const c9sdk = config.get('c9sdk');
-  const cloud9 = c9sdk + "/server.js";
-  child = child_process.spawn(cloud9, ["-w", projectPath, "-p", portNumber], {cwd: projectPath});
-  child.stdout.setEncoding('utf8');
+  const cloud9 = `${c9sdk}/server.js`;
+  child = child_process.fork(cloud9, ["-w", projectPath, "-p", portNumber], {cwd: projectPath, silent: true});
   child.stdout.on('data', function(data){
     process.stdout.write(data);
   });
+  child.on('close', function(code) {
+    console.log("code is " + code);
+  })
   child.on('exit', function(){
+    console.log("exit");
     process.exit(0);
   });
   setTimeout(() => {
-    mainWindow.destroy();
     mainWindow = null;
     mainWindow = createWindow();
   }, 1000);
@@ -152,6 +154,7 @@ ipc.on('open-project', function(event, arg) {
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
+    console.log("window-all-closed");
     app.quit();
   }
 });
@@ -161,6 +164,7 @@ app.on('will-quit', function () {
   if (child) {
     child.kill();
   }
+  console.log("will-quit");
 });
 
 function createWindow() {
