@@ -1,0 +1,3 @@
+[submodule "c9sdk"]
+	path = c9sdk
+	url = git://github.com/c9/core.git

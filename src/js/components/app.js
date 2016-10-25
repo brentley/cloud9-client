@@ -1,27 +1,53 @@
 import React from "react"
 import { connect } from 'react-redux';
-import Counter from './counter';
-import Buttons from './buttons';
-import { INCREMENT, DECREMENT, INCREMENT_ASYNC, DECREMENT_ASYNC} from './../actions/';
+import AppBar from 'material-ui/AppBar';
+import {List, ListItem} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
+import Divider from 'material-ui/Divider';
+import RaisedButton from 'material-ui/RaisedButton';
+import Button from './button';
+import * as actions from './../actions/';
 
 class App extends React.Component {
-  render() {
-    const { count, dispatch} = this.props;
-    const action = type => dispatch({type});
-    return (
-      <div>
-        <Counter count={count}/>
-        <Buttons 
-          onIncrement={() => action(INCREMENT_ASYNC)} 
-          onDecrement={() => action(DECREMENT_ASYNC)}
+  render () {
+    const { projectSettings } = this.props;
+    return (<div>
+      <AppBar title="Cloud9 Client" showMenuIconButton={false} />
+      <List>
+        <ListItem 
+          primaryText="App config" 
+          disabled={true}
+          secondaryText={projectSettings.configPath}
         />
+        <ListItem 
+          primaryText="Node version" 
+          disabled={true}
+          secondaryText={projectSettings.nodeVersion}
+        />
+        <ListItem 
+          primaryText="Port" 
+          disabled={true}
+          secondaryText={projectSettings.portNumber}
+        />
+        <ListItem 
+          primaryText="Cloud9" 
+          disabled={true}
+          secondaryText={projectSettings.cloud9Path} 
+          rightIcon={<RaisedButton label="Select" onClick={() => this.props.selectC9ProjectDirectory()} />}
+        />
+        <ListItem 
+          primaryText="Project" 
+          disabled={true}
+          secondaryText={projectSettings.projectPath} 
+          rightIcon={<RaisedButton label="Select" onClick={() => this.props.selectProjectDirectory()} />}
+        />
+      </List>
+      <div style={{textAlign:"center"}}>
+        <RaisedButton label="Open" fullWidth={true} onClick={ () => this.props.openProject() }/>
       </div>
-    )
+    </div>)
   }
 }
-const mapStateToProps = (store) => {
-  return {
-    count: store.counterReducer.count
-  };
-}
-export default connect(mapStateToProps)(App);
+const mapStateToProps = (state) => state;
+
+export default connect(mapStateToProps, actions)(App);

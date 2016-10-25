@@ -1,13 +1,13 @@
 import 'babel-polyfill';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import counterReducer from './../reducers/';
+import reducers from './../reducers/';
 import rootSaga from './../sagas/';
 
 export default function configureStore(initialState) {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
-    counterReducer,
+    reducers,
     initialState,
     applyMiddleware(sagaMiddleware)
   );

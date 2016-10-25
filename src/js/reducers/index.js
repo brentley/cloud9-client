@@ -1,19 +1,23 @@
 import { combineReducers } from 'redux';
-import { INCREMENT, DECREMENT } from './../actions/';
+import * as actions from './../actions/';
 
 const initialState = {
-  count: 0
+  cloud9Path: "",
+  projectPath: "",
+  configPath: "",
+  portNumber: 0,
+  nodeVersion: ""
 }
 
-const counterReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case INCREMENT:
-      return { count: state.count + 1 };
-    case DECREMENT:
-      return { count: state.count - 1 };
-    default:
-      return state;
+const handlers = {
+  [actions.UPDATE_SETTINGS]: (state, action) => {
+    return Object.assign({}, state, action.payload);
   }
 }
 
-export default combineReducers({counterReducer});
+const projectSettings = (state = initialState, action, next) => {
+  const handler = handlers[ action.type ];
+  return !handler ? state : handler(state, action);
+}
+
+export default combineReducers({ projectSettings });
