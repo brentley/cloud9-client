@@ -147,6 +147,7 @@ ipc.on('open-project', function(event, arg) {
     process.exit(0);
   });
   setTimeout(() => {
+    mainWindow.destroy();
     mainWindow = null;
     mainWindow = createWindow();
   }, 1000);

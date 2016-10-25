@@ -1,7 +1,7 @@
 {
   "name": "cloud9-client",
   "productName": "Cloud9Client",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Client for cloud9",
   "license": "MIT",
   "repository": "ichiwa/cloud9-client",
